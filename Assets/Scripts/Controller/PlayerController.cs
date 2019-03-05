@@ -18,30 +18,31 @@ public class PlayerController : MonoBehaviour {
 		if (EventSystem.current.IsPointerOverGameObject())
 			return;
 
-		//if (Input.GetMouseButtonDown(0)) {
-		//	Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-		//	RaycastHit hit;
-		//	if (Physics.Raycast(ray, out hit, layerMask)) {
-		//		playerMotor.MoveToPoint(hit.point);
-
-		//		RemoveFocus();
-		//	}
-		//}
-
-		if(Input.touchCount==1) {
-            if(Input.touches[0].phase == TouchPhase.Ended)
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, layerMask))
             {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-			    RaycastHit hit;
-			    if(Physics.Raycast(ray, out hit, 100)) {
-				    Interactable item = hit.transform.GetComponent<Interactable>();
-				    if(item)
-					    SetFocus(item);
-			    }
+                playerMotor.MoveToPoint(hit.point);
+
+                RemoveFocus();
             }
-			
-		}
-	}
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Interactable item = hit.transform.GetComponent<Interactable>();
+                if (item)
+                    SetFocus(item);
+            }
+
+        }
+    }
 
 	void SetFocus(Interactable newFocus) {
 		if(focus != newFocus) {

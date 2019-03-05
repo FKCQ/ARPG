@@ -37,11 +37,10 @@ public class CharactorAnimation : MonoBehaviour {
 
 	}
 
-    public void Move(ETCJoystick move)
+    public void Move()
     {
         PlayerController pc = GetComponent<PlayerController>();
         pc.RemoveFocus();
-        speed = Vector2.Distance(move.followOffset, Vector2.zero) * move.tmSpeed;
         anim.SetFloat("Speed", speed, dampTime, Time.deltaTime);
     }
 	private void Attack() {
